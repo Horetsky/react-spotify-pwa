@@ -1,0 +1,75 @@
+@import './../../style/vars.scss';
+
+.album-item-wrapper {
+    position: relative;
+    .item-data {
+        width: 100%;
+        
+        &:hover {
+            .track-play-btn-hover {
+                opacity: 100%;
+            }
+            // background: linear-gradient(90deg, #FFFFFF 0%, #ECECEC 50.2%, rgba(255, 255, 255, 0) 100%);
+        }
+    }
+    .album-item-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 5px;
+    }
+    border-top: none;
+    border-bottom: 1px solid $border-solid-color;
+    .search-item-cover {
+        position: relative;
+    }
+    .track-play-btn {
+        transition: all .3s;
+        cursor: pointer;
+        position: absolute;
+        width: clamp(30px, 5vw, 50px);
+        top: calc((clamp(50px, 8vw, 80px) - clamp(30px, 5vw, 50px)) / 2);
+        left: calc((clamp(50px, 8vw, 80px) - clamp(30px, 5vw, 50px)) / 2);
+        opacity: 0;
+    }
+
+    .curren-track-playing-icon {
+        path {
+            fill: $accent-color;
+        }
+        // width: clamp(8px, 1.5vw, 15px);
+        width: 100%;
+    }
+
+    
+    .track-pause-btn {
+        opacity: 1 !important;
+    }
+    .menu-btn {
+        position: relative;
+        padding: 0 5px;
+        transition: all .5s;
+        svg {
+            width: 30px;
+        }
+    }
+
+}
+
+.album-item-sign {
+    flex-shrink: 0;
+    width: clamp(8px, 1.5vw, 15px);
+}
+
+.artists {
+    display: flex;
+    align-items: center;
+
+    column-gap: 8px;
+}
+
+@media(max-width: 650px) {
+    .menu-btn svg {
+        width: 25px !important;
+    }
+}

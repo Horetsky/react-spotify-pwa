@@ -1,0 +1,76 @@
+@import '../../app/vars.scss';
+
+.navbar {
+    position: fixed;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    background: $nav-color;
+    backdrop-filter: blur(2px);
+
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    row-gap: 22px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 5vw;
+
+
+    .navbar_items {
+        display: flex;
+        justify-content: space-between;
+    
+        .nav-item {
+            display: flex;
+            align-items: center;
+            column-gap: 11px;
+    
+            span {
+                color: $secondaty-font-color;
+                font-weight: 500;
+                font-size: clamp(12px, 2.1vw, 21px);
+            }
+    
+            &:hover {
+                span{
+                    transition: all 0.2s;
+                    color: $accent-color;
+                }
+                svg path {
+                    transition: all 0.2s;
+                    fill: $accent-color;
+                }
+            }
+        }
+      
+    }
+    li.nav-item.active {
+        svg path {
+            fill: $accent-color;
+        }
+        span {
+            color: $accent-color;
+        }
+    }
+    
+}
+
+
+@media (max-width: 850px) {
+    .navbar {
+        padding-bottom: 5px;
+        padding-top: 10px;
+    }
+    .nav-item {
+        flex-direction: column;
+        row-gap: 5px;
+
+        svg {
+            width: 23px;
+        }
+    }
+}
+

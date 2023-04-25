@@ -1,0 +1,49 @@
+@import '../../app/vars.scss';
+
+.main-container {
+    padding-top: 50px;
+    max-width: 95vw;
+    margin: 0 auto;
+}
+
+.single-container {
+    width: 100%;
+
+    .container-solid {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-solid-color;
+    padding-bottom: clamp(10px, 5vw, 18px);
+    position: relative;
+    
+    h1 {
+        font-weight: 800;
+        // font-size: 35px;
+        font-size: clamp(30px, 3.5vw, 35px);
+    }
+    .user-menu {
+        // width: 60px;
+        // height: 60px;
+        width: clamp(40px, 6vw, 60px);
+        height: clamp(40px, 6vw, 60px);
+        border-radius: 100%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .single-container .container-solid {
+        height: 200px;
+    }
+}

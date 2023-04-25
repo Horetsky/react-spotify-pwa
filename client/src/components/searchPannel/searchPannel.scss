@@ -1,0 +1,19 @@
+.search {
+    display: flex;
+    column-gap: 15px;
+    background: #E4E4E4;
+    border-radius: 12px;
+    padding: 10px 24px;
+    margin: 20px 0;
+
+    svg {
+        width: 20px;
+    }
+        input {
+            width: 100%;
+            font-weight: 400;
+            font-size: 18px;
+            color: #767676;
+        }
+
+}

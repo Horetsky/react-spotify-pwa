@@ -1,0 +1,1 @@
+export const setUserLoginStatus = (status) => ({type: 'SET_USER_LOGIN_STATUS', payload: status});
