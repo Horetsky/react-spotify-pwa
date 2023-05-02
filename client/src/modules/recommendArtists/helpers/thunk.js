@@ -9,7 +9,6 @@ export const fetchArtistMore = (request) => async(dispatch) => {
         const topArtist = await request('/v1/me/top/artists?limit=10')
                         .then(data => data.items.map(transformArtist))
         dispatch(setData(topArtist))
-        console.log(topArtist);
         dispatch(setLoadingStatus('idle'))
     } catch {
         dispatch(setLoadingStatus('error'))

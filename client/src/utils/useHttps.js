@@ -1,11 +1,13 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { setLoadingStatus } from '../redux/_actions';
 
+const token = Cookies.get('access_token')
+
 export default function useHttp() {
-    const [token, setToken] = useState(Cookies.get('access_token'))
+    // const [token, setToken] = useState(null)
     const _apiBase = 'https://api.spotify.com';
     const _rapidApiBase = 'https://youtube-v31.p.rapidapi.com';
     const dispatch = useDispatch();
@@ -20,6 +22,7 @@ export default function useHttp() {
     };
 
     const getRequest = useCallback( async (url) => { 
+        if (!token) return
         const response = await axios
                 .get(`${_apiBase}${url}`, {
                     headers: reqestSettings
@@ -28,7 +31,7 @@ export default function useHttp() {
                 .catch(() => dispatch(setLoadingStatus('error')))
 
         return response
-    }, []);
+    }, [token]);
 
     const rapidRequest = useCallback( async (url) => {
         const response = await axios

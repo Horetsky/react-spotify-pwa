@@ -6,11 +6,11 @@ export const ROUTES = {
     discover: '/discover',
     search: '/search',
 
-    singleTrack: (id = null) => (id ? `/track/${id}` : `/track/:trackId`),
-    singleArtist: (id = null) => (id ? `/artist/${id}` : `/artist/:artistId`),
+    singleTrack: (id = null) => (id ? `/track/${id}` : `/track/:itemId`),
+    singleArtist: (id = null) => (id ? `/artist/${id}` : `/artist/:itemId`),
 
-    singleAlbum: (id = null) => (id ? `/album/${id}` : `/album/:albumId`),
-    singlePlaylist: (id = null) => (id ? `/playlist/${id}` : `/playlist/:playlistId`),
+    singleAlbum: (id = null) => (id ? `/album/${id}` : `/album/:itemId`),
+    singlePlaylist: (id = null) => (id ? `/playlist/${id}` : `/playlist/:itemId`),
 
     autoPlaylist: (type = null) => (type ? `/smartlist/${type}` : `/smartlist/:playlistType`),
 

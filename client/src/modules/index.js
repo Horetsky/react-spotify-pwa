@@ -14,6 +14,11 @@ import { personalPlaylistSlice } from "./personalPlaylist/helpers/reducer";
 import RecommendArtists from "./recommendArtists/RecommendArtists";
 import { favArtistSlice } from "./recommendArtists/helpers/reducer";
 
+import SingleHeader from "./singleHeader/SingleHeader";
+import { singleHeaderSlice } from "./singleHeader/helpers/reducer";
+
+import SingleTrackView from "./singleTrackView/SingleTrackView";
+import { singleTrackSlice } from "./singleTrackView/helpers/reducer";
 export {
     LoginForm,
 
@@ -30,6 +35,11 @@ export {
     personalPlaylistSlice,
 
     RecommendArtists,
-    favArtistSlice
+    favArtistSlice,
 
+    SingleHeader,
+    singleHeaderSlice,
+
+    SingleTrackView,
+    singleTrackSlice
 }

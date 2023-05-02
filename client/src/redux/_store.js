@@ -7,7 +7,11 @@ import {
   listenMoreSlice,
   moreFromArtistSlice,
   personalPlaylistSlice,
-  favArtistSlice
+  favArtistSlice,
+  
+  singleHeaderSlice,
+
+  singleTrackSlice
 } from '../modules'
 
 
@@ -30,7 +34,11 @@ export const store = configureStore({
     listenMoreSlice,
     moreFromArtistSlice,
     personalPlaylistSlice,
-    favArtistSlice
+    favArtistSlice,
+
+    singleHeaderSlice,
+    
+    singleTrackSlice
     // player,
 
     // listenPage,

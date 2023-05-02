@@ -1,0 +1,53 @@
+@import '../../app/vars.scss';
+
+.single-track-header {
+    margin-top: calc(-250px / 2);
+    display: flex;
+    column-gap: 40px;
+    align-items: center;
+    max-width: 95vw !important;
+    .header-cover {
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .track-info { 
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        row-gap: 60px;
+        .track-caption {
+            h1 {
+                font-weight: 900;
+                font-size: 35px;
+            }
+            h3 {
+                color: #fff;
+                font-weight: 500;
+                font-size: 20px;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+            p {
+                margin-top: 5px;
+                font-weight: 400;
+                font-size: 15px;
+            }
+
+            .artists-wrapper {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                column-gap: 8px;
+            }
+        }
+    }
+}

@@ -6,7 +6,7 @@ import ArtistCardSlider from '../../components/artistCardSlider/ArtistCardSlider
 
 const RecommendArtists = () => {
     const {getRequest} = useHttp();
-    const dispatch = useDispatch() ;
+    const dispatch = useDispatch();
     
     useEffect(() => {
         dispatch(fetchArtistMore(getRequest))
@@ -25,5 +25,8 @@ const RecommendArtists = () => {
         </section>
     );
 };
+
+
+
 
 export default RecommendArtists;
