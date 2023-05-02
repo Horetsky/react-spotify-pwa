@@ -13,15 +13,15 @@ const MoreFromArtist = () => {
     }, [])
 
     const {
-        listenMore
-    } = useSelector(state => state.listenMoreSlice)
+        moreFromArtist
+    } = useSelector(state => state.moreFromArtistSlice)
 
     return (
         <section className='listen-recenty'>
             {
-                listenMore.length > 0 
+                moreFromArtist.length > 0 
                 ? 
-                <MusicCardSlider data={listenMore} type="track" lable="Більше від улюбленого виконавця"/>
+                <MusicCardSlider data={moreFromArtist} type="track" lable="Більше від улюбленого виконавця"/>
                 :   <h1>Нажаль у вас немає недавніх треків</h1>
 
             }

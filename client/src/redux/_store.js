@@ -11,7 +11,8 @@ import {
   
   singleHeaderSlice,
 
-  singleTrackSlice
+  singleTrackSlice,
+  singleArtistSlice
 } from '../modules'
 
 
@@ -38,7 +39,8 @@ export const store = configureStore({
 
     singleHeaderSlice,
     
-    singleTrackSlice
+    singleTrackSlice,
+    singleArtistSlice
     // player,
 
     // listenPage,

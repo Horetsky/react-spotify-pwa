@@ -11,8 +11,12 @@ import {
     LoginPage,
     ListenNowPage,
     SearchPage,
+    LibPage,
     
-    SingleTrackPage
+    SingleTrackPage,
+    SingleArtistPage,
+    SinglePlaylistPage,
+    SingleAlbumPage
 } from '../pages/_index'
 export const AppRouterProvider = createBrowserRouter([
     {
@@ -29,6 +33,10 @@ export const AppRouterProvider = createBrowserRouter([
                 path: ROUTES.search,
                 element: <SearchPage />
             },
+            {
+                path: ROUTES.library,
+                element: <LibPage />
+            }
             // {
             //     path: ROUTES.library,
             //     element: <LibraryPage />,
@@ -74,6 +82,36 @@ export const AppRouterProvider = createBrowserRouter([
             }
         ]
     },
+    {
+        path: ROUTES.singleArtist(),
+        element: <SingleItem />,
+        children: [
+            {
+                index: true,
+                element: <SingleArtistPage />
+            }
+        ]
+    },
+    {
+        path: ROUTES.singlePlaylist(),
+        element: <SingleItem />,
+        children: [
+            {
+                index: true,
+                element: <SinglePlaylistPage />
+            }
+        ]
+    },
+    {
+        path: ROUTES.singleAlbum(),
+        element: <SingleItem />,
+        children: [
+            {
+                index: true,
+                element: <SingleAlbumPage />
+            }
+        ]
+    }
 
     // {
     //     path: ROUTES.singleArtist(),

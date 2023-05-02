@@ -19,6 +19,11 @@ import { singleHeaderSlice } from "./singleHeader/helpers/reducer";
 
 import SingleTrackView from "./singleTrackView/SingleTrackView";
 import { singleTrackSlice } from "./singleTrackView/helpers/reducer";
+
+import SingleArtistView from "./singleArtistView/SingleArtistView";
+import { singleArtistSlice } from "./singleArtistView/helpers/reducer";
+
+import TrackList from "./trackList/TrackList";
 export {
     LoginForm,
 
@@ -41,5 +46,10 @@ export {
     singleHeaderSlice,
 
     SingleTrackView,
-    singleTrackSlice
+    singleTrackSlice,
+
+    SingleArtistView,
+    singleArtistSlice,
+    
+    TrackList
 }

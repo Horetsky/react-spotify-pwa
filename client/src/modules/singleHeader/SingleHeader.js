@@ -16,7 +16,8 @@ const SingleHeader = ({ type, id }) => {
     const { getColor } = useColors()
 
     useEffect(() => {
-        dispatch(fetchSingleHeader(getRequest, rapidRequest, type, id))
+        window.scrollTo(0,0)
+        dispatch(fetchSingleHeader(getRequest, type, id))
     }, [type, id]);
 
     const { baseData } = useSelector(state => state.singleHeaderSlice);
@@ -27,24 +28,28 @@ const SingleHeader = ({ type, id }) => {
     
     return (
         <header className='single-track-header'>
-            <div className="header-cover">
+            <div className="header-cover" style={type === 'artist' ? {"border-radius": "100%"} : null}>
                 <img src={baseData.thumbnail} alt="album cover"/>
             </div>
             <div className='track-info'>
                  <div className='track-caption'>
-                     <h1>{baseData.name}</h1>
+                    <h1>{baseData.name}</h1>
+                    {
+                        baseData.genres ?
+                        <h3>{baseData.genres}</h3> : null
+                    }
                      <div className='artists-wrapper'>
-                         {
-                             baseData.artist?.map(art => (
-                                 <Link to={ROUTES.singleArtist(art.id)} key={art.id}>
-                                     <h3>{art.name}</h3>
-                                 </Link>
-                             ))
-                         }
-                         {
-                            baseData.followers ?
-                            `- ${baseData.followers} followers` : null
-                         }
+                        {
+                            baseData.artist?.map(art => (
+                                <Link to={ROUTES.singleArtist(art.id)} key={art.id}>
+                                    <h3>{art.name}</h3>
+                                </Link>
+                            ))
+                        }
+                        {
+                           baseData.followers ?
+                           `${baseData.followers} followers` : null
+                        }
                      </div>
                     {
                         baseData.descr ? 
