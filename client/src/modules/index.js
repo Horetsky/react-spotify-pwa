@@ -14,6 +14,20 @@ import { personalPlaylistSlice } from "./personalPlaylist/helpers/reducer";
 import RecommendArtists from "./recommendArtists/RecommendArtists";
 import { favArtistSlice } from "./recommendArtists/helpers/reducer";
 
+import Categories from "./categories/Categories";
+import { categoriesSlice } from "./categories/helpers/reducer";
+import SearchPannel from "./searchPannel/SearchPannel";
+import { searchPanelSlice } from "./searchPannel/helpers/reducer";
+
+import LibPlaylists from "./libPlaylists/LibPlaylists";
+import { libPlaylistsSlice } from "./libPlaylists/helpers/reducer";
+import LibAlbums from "./libAlbums/LibAlbums"
+import { libAlbumsSlice } from "./libAlbums/helpers/reducer";
+import LibArtist from "./libArtists/LibArtist";
+import { libArtistSlice } from "./libArtists/helpers/reducer";
+import LibTracks from "./libTracks/LibTracks";
+import { libTracksSlice } from "./libTracks/helpers/reducer";
+
 import SingleHeader from "./singleHeader/SingleHeader";
 import { singleHeaderSlice } from "./singleHeader/helpers/reducer";
 
@@ -41,6 +55,20 @@ export {
 
     RecommendArtists,
     favArtistSlice,
+
+    Categories,
+    categoriesSlice,
+    SearchPannel,
+    searchPanelSlice,
+
+    LibPlaylists,
+    libPlaylistsSlice,
+    LibAlbums,
+    libAlbumsSlice,
+    LibArtist,
+    libArtistSlice,
+    LibTracks,
+    libTracksSlice,
 
     SingleHeader,
     singleHeaderSlice,

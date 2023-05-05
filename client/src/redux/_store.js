@@ -8,23 +8,20 @@ import {
   moreFromArtistSlice,
   personalPlaylistSlice,
   favArtistSlice,
+
+  categoriesSlice,
+  searchPanelSlice,
+
+  libPlaylistsSlice,
+  libAlbumsSlice,
+  libArtistSlice,
+  libTracksSlice,
   
   singleHeaderSlice,
 
   singleTrackSlice,
   singleArtistSlice
 } from '../modules'
-
-
-// import { player } from './reducers/player';
-
-// import { listenPage } from './reducers/listenPage';
-// import { searchPage } from './reducers/searchPage';
-// import { libPage } from './reducers/libPage';
-
-// import { singleAlbum } from './reducers/singleAlbum';
-// import { singleTrack } from './reducers/singleTrack';
-// import { singleArtist } from './reducers/singleArtist';
 
 export const store = configureStore({
   reducer: {
@@ -37,18 +34,17 @@ export const store = configureStore({
     personalPlaylistSlice,
     favArtistSlice,
 
+    categoriesSlice,
+    searchPanelSlice,
+
+    libPlaylistsSlice,
+    libAlbumsSlice,
+    libArtistSlice,
+    libTracksSlice,
+
     singleHeaderSlice,
     
     singleTrackSlice,
     singleArtistSlice
-    // player,
-
-    // listenPage,
-    // searchPage,
-    // libPage,
-
-    // singleAlbum,
-    // singleTrack,
-    // singleArtist
   }
 })

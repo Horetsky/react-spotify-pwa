@@ -3,7 +3,9 @@ import axios from "axios";
 import Cookies from 'js-cookie'
 
 import { useDispatch } from 'react-redux';
+import { fetchUserData } from './thunk';
 import { setUserLoginStatus } from './actions';
+import useHttp from '../../utils/useHttps';
 
 const clientId = process.env.REACT_APP_CLIET_ID;
 const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -15,7 +17,8 @@ export default function useAuth (code) {
     const [refreshToken, setRefreshToken] = useState()
     const [expiresIn, setExpiresIn] = useState();
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { getRequest } = useHttp()
 
     useEffect(() => {
       const accesCookie = Cookies.get('access_token'),
@@ -70,7 +73,8 @@ export default function useAuth (code) {
           Cookies.set('access_token', accessToken, { expires: 1 });
           Cookies.set('expires', currentTime, { expires: 1 });
 
-          dispatch({type: 'SET_ACCESS_TOKEN', payload: accessToken})
+          dispatch({type: 'SET_ACCESS_TOKEN', payload: accessToken});
+          dispatch(fetchUserData(getRequest))
         }
       }, [accessToken])
 

@@ -7,10 +7,13 @@ import MusicCardSlider from "../../components/musicCardSlider/MusicCardSlider";
 const MoreFromArtist = () => {
     const {getRequest} = useHttp();
     const dispatch = useDispatch() ;
-    
+    const { reload } = useSelector(state => state.moreFromArtistSlice)
+
     useEffect(() => {
+        if (!reload) return;
         dispatch(fetchmoreFromArtist(getRequest))
-    }, [])
+        console.log('more from artist fetch');
+    }, [dispatch, reload])
 
     const {
         moreFromArtist

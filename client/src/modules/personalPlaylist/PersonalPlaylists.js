@@ -17,10 +17,12 @@ import './style.scss';
 const PersonalPlaylists = () => {
     const {getRequest} = useHttp();
     const dispatch = useDispatch() ;
-    
+    const { reload } = useSelector(state => state.personalPlaylistSlice)
     useEffect(() => {
-        dispatch(fetchPersonalPlaylist(getRequest))
-    }, [])
+        if (!reload) return;
+        dispatch(fetchPersonalPlaylist(getRequest));
+        console.log('person playlist fetch');
+    }, [dispatch, reload])
 
     const {
         personalPlaylist

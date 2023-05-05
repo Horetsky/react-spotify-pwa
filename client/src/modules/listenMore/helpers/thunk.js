@@ -9,6 +9,7 @@ export const fetchListenMore = (request) => async(dispatch) => {
             .then(data => (data.items.map(transformUsersTopTracks)));
         dispatch(setData(topTracks))
         dispatch(setLoadingStatus('idle'))
+        dispatch(setReloadRule(false))
     } catch {
         dispatch(setLoadingStatus('error'))
     }
@@ -16,3 +17,4 @@ export const fetchListenMore = (request) => async(dispatch) => {
 
 const setData = (data) => ({type: "SET_LISTEN_MORE_DATA", payload: data});
 const setLoadingStatus = (status) => ({type: "SET_LISTEN_MORE_LOADING", payload: status});
+const setReloadRule = (rule) => ({type: "SET_LISTEN_MORE_RELOAD", payload: rule});

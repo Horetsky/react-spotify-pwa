@@ -11,6 +11,8 @@ export const recommendationSlice = (state = defaultState, action) => {
             return {...state, recommendation: action.payload};
         case "SET_RECOMMEND_LOADING":
             return {...state, loadingStatus: action.payload}
+        case "SET_RECOMMEND_RELOAD":
+            return {...state, reload: action.payload}
         default: return state
     }
 }

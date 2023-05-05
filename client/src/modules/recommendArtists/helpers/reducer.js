@@ -10,7 +10,10 @@ export const favArtistSlice = (state = defaultState, action) => {
         case "SET_ARTIST_FAV_DATA": 
             return {...state, favArtist: action.payload};
         case "SET_ARTIST_FAV_LOADING":
-            return {...state, loadingStatus: action.payload}
+            return {...state, loadingStatus: action.payload};
+        case "SET_ARTIST_FAV_RELOAD":
+            return {...state, reload: action.payload};
+            
         default: return state
     }
 }

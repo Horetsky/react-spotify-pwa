@@ -12,7 +12,8 @@ export const fetchmoreFromArtist = request => async(dispatch) => {
                         .then(data => data.tracks.map(transformArtistTrack))
             })
         dispatch(setData(topArtistTrack))
-        dispatch(setLoadingStatus('idle'))
+        dispatch(setLoadingStatus('idle'));
+        dispatch(setReloadRule(false))
     } catch {
         dispatch(setLoadingStatus('error'))
     }
@@ -20,3 +21,4 @@ export const fetchmoreFromArtist = request => async(dispatch) => {
 
 const setData = (data) => ({type: "SET_ARTIST_MORE_DATA", payload: data});
 const setLoadingStatus = (status) => ({type: "SET_ARTIST_MORE_LOADING", payload: status});
+const setReloadRule = (rule) => ({type: "SET_ARTIST_MORE_RELOAD", payload: rule});

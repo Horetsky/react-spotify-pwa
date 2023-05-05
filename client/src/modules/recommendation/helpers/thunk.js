@@ -13,6 +13,7 @@ export const fetchRecommend = (request) => async(dispatch) => {
                     .then(data => (data.playlists.items.map(transformRecomendPlaylist)));
         dispatch(setRecommendData([...releases, ...playlists]))
         dispatch(setLoadingStatus('idle'))
+        dispatch(setReloadRule(false))
     } catch {
         dispatch(setLoadingStatus('error'))
     }
@@ -20,3 +21,4 @@ export const fetchRecommend = (request) => async(dispatch) => {
 
 const setRecommendData = (data) => ({type: "SET_RECOMMEND_DATA", payload: data});
 const setLoadingStatus = (status) => ({type: "SET_RECOMMEND_LOADING", payload: status});
+const setReloadRule = (rule) => ({type: "SET_RECOMMEND_RELOAD", payload: rule});

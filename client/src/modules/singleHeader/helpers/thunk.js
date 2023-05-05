@@ -1,13 +1,16 @@
+import { initializeUseSelector } from 'react-redux/es/hooks/useSelector';
 import {
     transformSingleTrack, 
     transformSingleArtist,
     transformPlaylist,
     transformAlbums
-} from '../../../utils/_transformData'
+} from '../../../utils/_transformData';
 
-export const fetchSingleHeader = (request, type, id) => (dispatch) => {
+export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => {
+
+
     dispatch(setLoadingStatus('loading'))
-    console.log(type);
+    
     async function getTrackData() {
         const isInLibrary = await request(`/v1/me/tracks/contains?ids=${id}`);
         const trackData = await request(`/v1/tracks/${id}`)
@@ -88,6 +91,7 @@ export const fetchSingleHeader = (request, type, id) => (dispatch) => {
         }))
         dispatch(setLoadingStatus('idle'))
     }
+
     try {
         switch(type) {
             case "track":
@@ -97,7 +101,11 @@ export const fetchSingleHeader = (request, type, id) => (dispatch) => {
             case "playlist":
                 getPlaylistData();
             case "album":
-                getAlbumData()
+                getAlbumData();
+            case "library":
+                dispatch(setData({
+                    baseData: userData
+                }))
         }
     } catch {
         dispatch(setLoadingStatus('error'))

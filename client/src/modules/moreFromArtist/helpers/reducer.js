@@ -10,7 +10,10 @@ export const moreFromArtistSlice = (state = defaultState, action) => {
         case "SET_ARTIST_MORE_DATA": 
             return {...state, moreFromArtist: action.payload};
         case "SET_ARTIST_MORE_LOADING":
-            return {...state, loadingStatus: action.payload}
+            return {...state, loadingStatus: action.payload};
+        case "SET_ARTIST_MORE_RELOAD":
+            return {...state, reload: action.payload};
+
         default: return state
     }
 }

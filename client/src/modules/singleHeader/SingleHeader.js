@@ -14,10 +14,13 @@ const SingleHeader = ({ type, id }) => {
     const { getRequest, rapidRequest } = useHttp();
     const dispatch = useDispatch();
     const { getColor } = useColors()
+    const {
+        userData
+    } = useSelector(state => state.user)
 
     useEffect(() => {
         window.scrollTo(0,0)
-        dispatch(fetchSingleHeader(getRequest, type, id))
+        dispatch(fetchSingleHeader(getRequest, type, id, userData))
     }, [type, id]);
 
     const { baseData } = useSelector(state => state.singleHeaderSlice);
@@ -28,11 +31,13 @@ const SingleHeader = ({ type, id }) => {
     
     return (
         <header className='single-track-header'>
-            <div className="header-cover" style={type === 'artist' ? {"border-radius": "100%"} : null}>
+            <div className="header-cover" style={type === 'artist' || type === 'library' ? {"border-radius": "100%"} : null}>
                 <img src={baseData.thumbnail} alt="album cover"/>
             </div>
             <div className='track-info'>
-                 <div className='track-caption'>
+                <div className={type !== 'library' ?
+                    'track-caption' : 'track-caption lib-caption'
+                }>
                     <h1>{baseData.name}</h1>
                     {
                         baseData.genres ?
@@ -48,7 +53,11 @@ const SingleHeader = ({ type, id }) => {
                         }
                         {
                            baseData.followers ?
-                           `${baseData.followers} followers` : null
+                           <h4>{baseData.followers} follower</h4> : null
+                        }
+                        {
+                            baseData.playlistCount ?
+                            <h4>{baseData.playlistCount} плейлістів</h4> : null
                         }
                      </div>
                     {

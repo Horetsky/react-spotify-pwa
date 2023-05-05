@@ -1,7 +1,7 @@
 @import '../../app/vars.scss';
 
 .single-track-header {
-    margin-top: calc(-250px / 2);
+    // margin-top: calc(-250px / 2);
     display: flex;
     column-gap: 40px;
     align-items: center;
@@ -22,6 +22,7 @@
         display: flex;
         flex-direction: column;
         row-gap: 60px;
+        
         .track-caption {
             h1 {
                 font-weight: 900;
@@ -48,6 +49,9 @@
                 align-items: center;
                 column-gap: 8px;
             }
+        }
+        .lib-caption {
+            color: #000;
         }
     }
 }

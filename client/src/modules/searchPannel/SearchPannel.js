@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchSearchResults } from '../../utils/redux/middleWare';
-import { setSearch } from '../../utils/redux/_actions';
-import useHttp from '../../utils/hooks/useHttps';
+import { fetchSearchResults, setData } from './helpers/thunk';
+import useHttp from '../../utils/useHttps';
 
 import './searchPannel.scss'
 
@@ -19,7 +18,7 @@ const SearchPannel = () => {
         if(search.length != 0) {
             dispatch(fetchSearchResults(getRequest, search));
         } else {
-            dispatch(setSearch([]))
+            dispatch(setData([]))
         }
     }, [search])
 

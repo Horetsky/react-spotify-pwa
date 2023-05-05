@@ -7,10 +7,12 @@ import ArtistCardSlider from '../../components/artistCardSlider/ArtistCardSlider
 const RecommendArtists = () => {
     const {getRequest} = useHttp();
     const dispatch = useDispatch();
-    
+    const { reload } = useSelector(state => state.favArtistSlice)
     useEffect(() => {
-        dispatch(fetchArtistMore(getRequest))
-    }, [])
+        if (!reload) return;
+        dispatch(fetchArtistMore(getRequest));
+        console.log('fav artist getch');
+    }, [dispatch, reload])
     const {
         favArtist
     } = useSelector(state => state.favArtistSlice)
