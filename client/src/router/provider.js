@@ -111,6 +111,16 @@ export const AppRouterProvider = createBrowserRouter([
                 element: <SingleAlbumPage />
             }
         ]
+    },
+    {
+        path: ROUTES.autoPlaylist(),
+        element: <SingleItem />,
+        children: [
+            {
+                index: true,
+                element: <SinglePlaylistPage />
+            }
+        ]
     }
 
     // {

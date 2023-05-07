@@ -38,6 +38,10 @@ import SingleArtistView from "./singleArtistView/SingleArtistView";
 import { singleArtistSlice } from "./singleArtistView/helpers/reducer";
 
 import TrackList from "./trackList/TrackList";
+
+import Player from "./player/Player";
+import { playerSlice } from "./player/helpers/reducer";
+
 export {
     LoginForm,
 
@@ -79,5 +83,8 @@ export {
     SingleArtistView,
     singleArtistSlice,
     
-    TrackList
+    TrackList,
+    
+    Player,
+    playerSlice
 }

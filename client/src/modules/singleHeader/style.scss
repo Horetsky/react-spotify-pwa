@@ -1,11 +1,12 @@
 @import '../../app/vars.scss';
 
 .single-track-header {
-    // margin-top: calc(-250px / 2);
     display: flex;
     column-gap: 40px;
     align-items: center;
     max-width: 95vw !important;
+    margin: 0 auto;
+    
     .header-cover {
         width: 250px;
         height: 250px;

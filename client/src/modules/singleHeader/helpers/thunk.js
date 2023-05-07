@@ -3,11 +3,17 @@ import {
     transformSingleTrack, 
     transformSingleArtist,
     transformPlaylist,
-    transformAlbums
+    transformAlbums,
+    transformSmartPlaylist,
+    transformUsersTopTracks,
+    transformArtistTrack
 } from '../../../utils/_transformData';
 
-export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => {
+import likedCover from './../assets/likedCover.svg'
+import favTrack from './../assets/favTrack.svg'
+import favArtist from './../assets/favArtist.svg'
 
+export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => {
 
     dispatch(setLoadingStatus('loading'))
     
@@ -92,20 +98,75 @@ export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => 
         dispatch(setLoadingStatus('idle'))
     }
 
+    async function getLibData() {
+        switch(id) {
+            case "saved":
+                const saved = await request('/v1/me/tracks?market=UA')
+                    .then(data => data.items.map(transformSmartPlaylist));
+                dispatch(setData({
+                    baseData: {
+                        name: "Збережені треки",
+                        thumbnail: likedCover,
+                        descr: "Насолоджуйтеся збереженими треками",
+                        track: saved[0]
+                    },
+                    track: saved
+                })); 
+                dispatch(setLoadingStatus('idle')); return;
+            case "liked":
+                const liked = await request('/v1/me/top/tracks')
+                    .then(data => data.items.map(transformUsersTopTracks))
+                dispatch(setData({
+                    baseData: {
+                        name: "Улюблені треки",
+                        thumbnail: favTrack,
+                        descr: "Насолоджуйтеся улюбленими треками",
+                        track: liked[0]
+                    },
+                    track: liked
+                })); 
+                dispatch(setLoadingStatus('idle')); return;
+            case "artist":
+                let len = 0;
+                const finalArr = [];
+                await request('/v1/me/top/artists')
+                        .then(data => data.items.map(async (item, i) => {
+                            await request(`/v1/artists/${item.id}/top-tracks?market=UA`)
+                                .then(data => data.tracks.map(transformArtistTrack))
+                                .then(res => finalArr.push(...res))
+                                .then(len++)
+                            if(i === len-1) {
+                                dispatch(setData({
+                                    baseData: {
+                                        name: "Улюблені виконавці",
+                                        thumbnail: favArtist,
+                                        descr: "Насолоджуйтеся треками улюблених виконавців",
+                                        track: finalArr[0]
+                                    },
+                                    track: finalArr
+                                }))
+                            }
+                        })) 
+            default:
+                dispatch(setData({
+                    baseData: userData
+                })); 
+                dispatch(setLoadingStatus('idle')); return;
+        }
+    }
+
     try {
         switch(type) {
             case "track":
-                getTrackData();
+                getTrackData(); return;
             case "artist":
-                getArtistData();
+                getArtistData(); return;
             case "playlist":
-                getPlaylistData();
+                getPlaylistData(); return;
             case "album":
-                getAlbumData();
-            case "library":
-                dispatch(setData({
-                    baseData: userData
-                }))
+                getAlbumData(); return;
+            default:
+                getLibData(); return;
         }
     } catch {
         dispatch(setLoadingStatus('error'))

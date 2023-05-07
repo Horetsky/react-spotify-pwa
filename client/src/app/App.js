@@ -3,7 +3,7 @@ import { RouterProvider } from "react-router-dom"
 // import { AppRouterProvider } from '../utils/router/provider';
 import { AppRouterProvider } from '../router/provider'
 import { useSelector } from 'react-redux';
-// import Player from './../components/player/Player'
+import { Player } from '../modules';
 import './base.scss';
 
 function App() {
@@ -12,9 +12,7 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={AppRouterProvider} />
-      {/* {
-        player ? <Player /> : null
-      } */}
+      <Player />
     </div>
   );
 }

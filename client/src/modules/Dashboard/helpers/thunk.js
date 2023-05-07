@@ -1,9 +1,8 @@
 import {
     tarnsformPlaylist
-} from '../../utils/_transformData'
+} from '../../../utils/_transformData'
 
 export const fetchUserData = (request) => async(dispatch) => {
-    console.log('user dayta');
     try {
         const baseUserData = await request(`/v1/me`)
                         .then(data => ({
@@ -16,6 +15,7 @@ export const fetchUserData = (request) => async(dispatch) => {
                         }))
         const playlists = await request('/v1/me/playlists')
                         .then(data => data.items.map(tarnsformPlaylist));
+        dispatch(setReload(false))
         dispatch(setData({
             playlistCount: playlists.length,
             ...baseUserData
@@ -26,3 +26,4 @@ export const fetchUserData = (request) => async(dispatch) => {
 }
 
 const setData = (data) => ({type: "SET_USER_DATA", payload: data});
+const setReload = rule => ({type: "SET_USER_RELOAD", payload: rule});

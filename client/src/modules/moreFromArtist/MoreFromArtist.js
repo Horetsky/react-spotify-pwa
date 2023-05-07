@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useHttp from '../../utils/useHttps'
 import { fetchmoreFromArtist } from './helpers/thunk';
+
 import MusicCardSlider from "../../components/musicCardSlider/MusicCardSlider";
+import MusicCardSkeleton from '../../components/musicCardSkeleton/MusicCardSkeleton';
 
 const MoreFromArtist = () => {
     const {getRequest} = useHttp();
     const dispatch = useDispatch() ;
-    const { reload } = useSelector(state => state.moreFromArtistSlice)
+    const { reload, loadingStatus } = useSelector(state => state.moreFromArtistSlice)
 
     useEffect(() => {
         if (!reload) return;
@@ -15,12 +17,23 @@ const MoreFromArtist = () => {
         console.log('more from artist fetch');
     }, [dispatch, reload])
 
-    const {
-        moreFromArtist
-    } = useSelector(state => state.moreFromArtistSlice)
 
     return (
         <section className='listen-recenty'>
+            {
+                loadingStatus === 'loading' ? <MusicCardSkeleton /> : <View />
+            }
+        </section>
+    );
+};
+
+const View = () => {
+    const {
+        moreFromArtist
+    } = useSelector(state => state.moreFromArtistSlice);
+
+    return (
+        <>
             {
                 moreFromArtist.length > 0 
                 ? 
@@ -28,8 +41,8 @@ const MoreFromArtist = () => {
                 :   <h1>Нажаль у вас немає недавніх треків</h1>
 
             }
-        </section>
-    );
-};
+        </>
+    )
+}
 
 export default MoreFromArtist;

@@ -20,7 +20,9 @@ import {
   singleHeaderSlice,
 
   singleTrackSlice,
-  singleArtistSlice
+  singleArtistSlice,
+
+  playerSlice
 } from '../modules'
 
 export const store = configureStore({
@@ -45,6 +47,8 @@ export const store = configureStore({
     singleHeaderSlice,
     
     singleTrackSlice,
-    singleArtistSlice
+    singleArtistSlice,
+
+    playerSlice
   }
 })

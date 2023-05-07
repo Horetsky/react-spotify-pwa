@@ -3,12 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 
+import useHttp from "../../utils/useHttps";
+import { fetchUserData } from './helpers/thunk';
+
 import userIcon from './assets/user.png'
 import './style.scss'
 
 const Dashboard = () => {
     const { activePage } = useSelector(state => state.general);
-    const { thumbnail } = useSelector(state => state.user);
+    const { userData, userReload } = useSelector(state => state.user);
+    const dispatch = useDispatch()
+    const { getRequest } = useHttp()
+
+    useEffect(() => {
+        if (!userReload) return;
+        dispatch(fetchUserData(getRequest))
+    }, [])
 
     const getActivePage = () => {
         switch(activePage) {
@@ -26,7 +36,7 @@ const Dashboard = () => {
             <header className="header container">
                 <h1>{getActivePage()}</h1>
                 <div className="user-menu">
-                    <img src={thumbnail ? thumbnail : userIcon} alt="user"/>
+                    <img src={userData.thumbnail ? userData.thumbnail : userIcon} alt="user"/>
                 </div>
             </header>
             <Outlet />

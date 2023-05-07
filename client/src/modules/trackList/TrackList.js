@@ -21,7 +21,10 @@ const TrackList = ({ type }) => {
                                 id={item.id}
                                 num={i+1}
                                 name={item.name}
-                                thumbnail={type === 'playlist' ? item.thumbnail : baseData.thumbnail}
+                                thumbnail={
+                                    type === 'playlist' || type === 'library' ? 
+                                    item.thumbnail : baseData.thumbnail
+                                }
                                 artist={windowWidth.current < 550 ? [item.artist[0]] : item.artist}
                                 audio={item.audio}
                             />

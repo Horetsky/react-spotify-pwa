@@ -1,17 +1,21 @@
-.single-main-content {
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    column-gap: 60px;
-
-    .single-information {
-        overflow-x: hidden;
-        .track-video {
-            iframe {
-                width: 100%;
-                height: clamp(200px, 45vw, 600px);
-                border-radius: 10px;
-            }
-        }
-    }
+.single-track {
+    max-width: 95vw;
+    margin: 0 auto;
     
+    .single-main-content {
+        display: grid;
+        grid-template-columns: 4fr 2fr;
+        column-gap: 60px;
+    
+        .single-information {
+            overflow-x: hidden;
+            .track-video {
+                iframe {
+                    width: 100%;
+                    height: clamp(200px, 45vw, 600px);
+                    border-radius: 10px;
+                }
+            }
+        }  
+    }
 }

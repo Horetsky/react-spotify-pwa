@@ -81,7 +81,7 @@ a {
 // }
 
 section {
-    margin-top: $section-gap;
+    margin-top: $section-gap !important;
 }
 .section-name {
     width: fit-content;

@@ -12,7 +12,7 @@ export const ROUTES = {
     singleAlbum: (id = null) => (id ? `/album/${id}` : `/album/:itemId`),
     singlePlaylist: (id = null) => (id ? `/playlist/${id}` : `/playlist/:itemId`),
 
-    autoPlaylist: (type = null) => (type ? `/smartlist/${type}` : `/smartlist/:playlistType`),
+    autoPlaylist: (type = null) => (type ? `/library/${type}` : `/library/:itemId`),
 
     smartDiscover: (type = null) => (type ? `/music-app/discover/${type}` : `/music-app/discover/:playlistType`),
 

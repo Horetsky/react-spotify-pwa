@@ -1,0 +1,83 @@
+@import '../../app/vars.scss';
+
+.skeleton-solid, 
+.skeleton-cover,
+.skeleton-play {
+    background-color: #e2e5e7;
+	// The shine that's going to move across the skeleton:
+	background-image:			
+			linear-gradient(
+				90deg, 
+				rgba(#fff, 0), 
+				rgba(#fff, 0.5),
+				rgba(#fff, 0)
+			);
+	background-size: 40px 100%; // width of the shine
+	background-repeat: no-repeat; // No need to repeat the shine effect
+	background-position: left -40px top 0; // Place shine on the left side, with offset on the left based on the width of the shine - see background-size
+	animation: shine 2s ease infinite; // increase animation time to see effect in 'slow-mo'
+}
+
+.header-skelet-container {
+    display: flex;
+    column-gap: 40px;
+    align-items: center;
+    max-width: 95vw !important;
+    .skeleton-cover {
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+        overflow: hidden;
+        animation: shine 2s ease infinite;
+    }
+    .skeleton-track-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+        .skeleton-info-text {
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            .skeleton-caption {
+                background: #fff;
+                border-radius: 20px;
+                width: 20vw;
+                height: 35px;
+            }
+            .skeleton-artists-wrapper {
+                background: #fff;
+                border-radius: 20px;
+                width: 10vw;
+                height: 30px;
+            }
+        }
+    }
+    .track-control {
+
+        .skeleton-play {
+            width: 176px;
+            height: 50px;
+            
+            border-radius: 8px;
+            background: #E4E4E4;
+            background-image:			
+			linear-gradient(
+				90deg, 
+				rgba(#fff, 0), 
+				rgba(#fff, 0.5),
+				rgba(#fff, 0)
+			);
+	background-size: 40px 100%; // width of the shine
+	background-repeat: no-repeat; // No need to repeat the shine effect
+	background-position: left -40px top 0; // Place shine on the left side, with offset on the left based on the width of the shine - see background-size
+	animation: shine 2s ease infinite; // increase animation time to see effect in 'slow-mo'
+        }
+    }
+}
+
+@keyframes shine {
+	to {
+		// Move shine from left to right, with offset on the right based on the width of the shine - see background-size
+		background-position: right -40px top 0;
+	}
+}

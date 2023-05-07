@@ -4,33 +4,99 @@ import { ROUTES } from "../../router/routes";
 import { useDispatch, useSelector } from "react-redux";
 import useHttp from "../../utils/useHttps";
 import useColors from "./helpers/useColors";
+
 import { fetchSingleHeader } from "./helpers/thunk";
 
+import HeaderSkeleton from "../../components/headerSkaleton/HeaderSkeleton";
 import PlayButton from '../../components/headerControlBtn/PlayButton';
 import ShareButton from '../../components/headerControlBtn/ShareButton';
 
 import './style.scss'
-const SingleHeader = ({ type, id }) => {
-    const { getRequest, rapidRequest } = useHttp();
+const SingleHeader = ({ type, id, loadingStatus }) => {
+    const { getRequest } = useHttp();
     const dispatch = useDispatch();
-    const { getColor } = useColors()
-    const {
-        userData
-    } = useSelector(state => state.user)
+
+    const { userData } = useSelector(state => state.user)
 
     useEffect(() => {
         window.scrollTo(0,0)
         dispatch(fetchSingleHeader(getRequest, type, id, userData))
     }, [type, id]);
 
-    const { baseData } = useSelector(state => state.singleHeaderSlice);
+    
+    
+    return (
+        <header className='single-track-header'>
+            {
+                loadingStatus === 'loading' ? <HeaderSkeleton /> : <View type={type} id={id}/>
+            }
+        </header>
+    );
+};
+
+const View = ({ type, id }) => {
+    const { getColor } = useColors()
+    const dispatch = useDispatch();
+
+    const { 
+        baseData 
+    } = useSelector(state => state.singleHeaderSlice);
+
+    const { 
+        currentTrackId, 
+        isPlaying,
+        isTheSamePlaing
+    } = useSelector(state => state.playerSlice)
 
     useEffect(() => {
         getColor(baseData?.thumbnail)
     }, [baseData])
+
+    useEffect(() => {
+        if (type === 'track') setPlayerStatus(baseData.id);
+        else setPlayerStatus(baseData?.track.id);
+    }, [baseData, currentTrackId, type])
+
+    const setPlayerStatus = ( item ) => {
+        if (item === currentTrackId) {
+            dispatch({
+                type: "SWITCH_PLAYER_TRACK_STATUS", 
+                payload: true
+            })
+        } else {
+            dispatch({
+                type: "SWITCH_PLAYER_TRACK_STATUS", 
+                payload: false
+            })
+        }
+    }
     
+    const handPlay = () => {
+        if ( type === 'track') playItem(baseData);
+        else playItem(baseData.track);
+    }
+
+    const playItem = ( data ) => {
+        if (isPlaying && isTheSamePlaing) {
+            dispatch({
+                type: "SWITCH_PLAYER_STATUS", 
+                payload: false //pause track
+            })
+        } else if (!isPlaying && isTheSamePlaing) {
+            dispatch({
+                type: "SWITCH_PLAYER_STATUS", 
+                payload: true // play track
+            })
+        } else {
+            dispatch({
+                type: "SET_PLAYER_TRACK_DATA", 
+                payload: data // set current track
+            })
+        }
+    }
+
     return (
-        <header className='single-track-header'>
+        <>
             <div className="header-cover" style={type === 'artist' || type === 'library' ? {"border-radius": "100%"} : null}>
                 <img src={baseData.thumbnail} alt="album cover"/>
             </div>
@@ -70,12 +136,16 @@ const SingleHeader = ({ type, id }) => {
                     }
                  </div>
                  <div className='track-control'>
-                     <PlayButton />
+                     <PlayButton 
+                        isTheSamePlaing={ isTheSamePlaing }
+                        isPlaying={isPlaying}
+                        playFunc={handPlay}
+                    />
                      <ShareButton />
                  </div>
              </div>
-        </header>
-    );
-};
+        </>
+    )
+}
 
 export default SingleHeader;

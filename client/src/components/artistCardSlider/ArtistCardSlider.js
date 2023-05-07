@@ -1,7 +1,6 @@
 import ArtistCard from "../artistCard/ArtistCard";
 
-const ArtistCardSlider = ({ data, lable, classView }) => {
-    console.log(classView);
+const ArtistCardSlider = ({ data, lable }) => {
     return (
         <>
             {

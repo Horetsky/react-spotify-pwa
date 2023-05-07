@@ -6,9 +6,13 @@ import { fetchSingleArtist } from './helpers/thunk';
 
 import MusicCardSlider from "../../components/musicCardSlider/MusicCardSlider";
 import ArtistCardSlider from "../../components/artistCardSlider/ArtistCardSlider";
+import MusicCardSkeleton from "../../components/musicCardSkeleton/MusicCardSkeleton";
+import VideoSkeleton from '../../components/videoSkeleton/VideoSkeleton';
+
 const SingleArtistView = ({ id }) => {
     const { getRequest, rapidRequest } = useHttp();
     const dispatch = useDispatch();
+    const { loadingStatus } = useSelector(state => state.singleArtistSlice);
 
     useEffect(() => {
         dispatch(fetchSingleArtist(getRequest, rapidRequest, id))
@@ -26,20 +30,32 @@ const SingleArtistView = ({ id }) => {
     return (
         <>
             <section className='related-tracks'>
-                <MusicCardSlider data={topTracks} type="track" lable="Популярні треки"/>
+                {
+                    loadingStatus === 'loading' ? <MusicCardSkeleton /> :
+                    <MusicCardSlider data={topTracks} type="track" lable="Популярні треки"/>
+                }
             </section>
 
             <section className='artist-albums'>
                 <div className='artist-albums__new-release'>
-                    <MusicCardSlider data={newRelease} type="album" lable="Нові релізи"/>
+                {
+                    loadingStatus === 'loading' ? <MusicCardSkeleton /> :
+                    <MusicCardSlider data={newRelease} type="album" lable="Нові релізи"/>   
+                }
                 </div>
                 <div className='artist-albums__albums'>
-                    <MusicCardSlider data={albums} lable="Альбоми виконавця" type="album"/>
+                {
+                    loadingStatus === 'loading' ? <MusicCardSkeleton /> :
+                    <MusicCardSlider data={albums} lable="Альбоми виконавця" type="album"/> 
+                }
                 </div>
             </section>
 
             <section className='atrists-clips'>
-                <Video url={videoUrl} lable={baseData.name}/>
+                {
+                    loadingStatus === 'loading' ? <VideoSkeleton /> :
+                    <Video url={videoUrl} lable={baseData.name}/>
+                }
             </section>
 
             <section className='related-to-single-artist'>

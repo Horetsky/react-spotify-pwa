@@ -79,7 +79,7 @@ const LibRecommend = () => {
 
                     thumbnail={favArtist}
                     type="playlist"
-                    addControl="liked-artist"
+                    addControl="artist"
                 />
             </div>
 

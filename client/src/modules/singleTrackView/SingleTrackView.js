@@ -4,10 +4,13 @@ import useHttp from "../../utils/useHttps";
 
 import { fetchSingleTrack } from "./helpers/thunk";
 import MusicCardSlider from "../../components/musicCardSlider/MusicCardSlider";
+import VideoSkeleton from "../../components/videoSkeleton/VideoSkeleton";
+import MusicCardSkeleton from '../../components/musicCardSkeleton/MusicCardSkeleton'
 
 const SingleTrackView = ({ id }) => {
     const { getRequest, rapidRequest } = useHttp();
     const dispatch = useDispatch();
+    const { loagingStatus } = useSelector(state => state.singleTrackSlice);
 
     useEffect(() => {
         dispatch(fetchSingleTrack(getRequest, rapidRequest, id))
@@ -21,15 +24,24 @@ const SingleTrackView = ({ id }) => {
     return (
         <>
             <section className='track-video'>
-                <Video url={videoUrl} lable="Відео"/>
+                {
+                    loagingStatus !== 'loading' ? <Video url={videoUrl} lable="Відео"/>  : 
+                    <VideoSkeleton />
+                }
             </section>
 
             <section className='consist'>
-                <MusicCardSlider data={albums} lable="У складі" type="album"/>
+                {
+                    loagingStatus === 'loading' ? <MusicCardSkeleton /> :
+                    <MusicCardSlider data={albums} lable="У складі" type="album"/>
+                }
             </section>
 
             <section className='related-tracks'>
-                <MusicCardSlider data={relatedTracks} lable="Схожі треки" type="track"/>
+                {
+                    loagingStatus === 'loading' ? <MusicCardSkeleton /> :
+                    <MusicCardSlider data={relatedTracks} lable="Схожі треки" type="track"/>
+                }
             </section>
         </>
     );

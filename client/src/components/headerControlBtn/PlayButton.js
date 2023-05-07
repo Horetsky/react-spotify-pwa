@@ -1,10 +1,13 @@
 import './style.scss'
 
-const PlayButton = (isTheSamePlaing) => {
+const PlayButton = ({ isTheSamePlaing, isPlaying, playFunc }) => {
+
     return (
-        <button className='play'>   
+        <button className='play'
+            onClick={() => playFunc()}
+        >   
             {
-                !isTheSamePlaing ? 
+                !isPlaying || !isTheSamePlaing ? 
                     <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 1.80991C0 0.408064 1.52246 -0.459622 2.72375 0.256703L18.1194 9.4466C19.2935 10.1471 19.2935 11.8517 18.1194 12.5521L2.72375 21.7429C1.52246 22.4601 0 21.5916 0 20.1897V1.80991Z" fill="#FF4F72"/>
                     </svg>

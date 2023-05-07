@@ -2,15 +2,11 @@
 
 .single-artist {
     max-width: 100% !important;
-    .single-artist-header {
-        max-width: 95vw;
+    .related-tracks,
+    .artist-albums,
+    .related-to-single-artist {
+        max-width: 95vw !important;
         margin: 0 auto;
-    }
-    section {
-        // max-width: $container-width;
-        max-width: 95vw;
-        margin: $section-gap auto;
-        // margin-top: calc(-250px / 2);
     }
 }
 
@@ -19,20 +15,11 @@
     overflow: hidden;
 }
 
-.artist-cover {
-    border-radius: 100%;
-}
-
 .artist-albums {
     display: flex;
-    // justify-content: space-between;
     column-gap: 15vw;
 }
-.track-control {
-    a {
-        color: $accent-color
-    }
-}
+
 .atrists-clips {
     max-width: 100% !important;
     background-color: #ECECEC;
