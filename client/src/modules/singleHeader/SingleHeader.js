@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../router/routes";
 import { useDispatch, useSelector } from "react-redux";
+
 import useHttp from "../../utils/useHttps";
 import useColors from "./helpers/useColors";
+import useTrackPlay from "../../utils/useTrackPlay";
 
 import { fetchSingleHeader } from "./helpers/thunk";
 
@@ -37,7 +39,7 @@ const SingleHeader = ({ type, id, loadingStatus }) => {
 const View = ({ type, id }) => {
     const { getColor } = useColors()
     const dispatch = useDispatch();
-
+    const { playItem } = useTrackPlay()
     const { 
         baseData 
     } = useSelector(state => state.singleHeaderSlice);
@@ -54,7 +56,7 @@ const View = ({ type, id }) => {
 
     useEffect(() => {
         if (type === 'track') setPlayerStatus(baseData.id);
-        else setPlayerStatus(baseData?.track.id);
+        else setPlayerStatus(baseData?.track?.id);
     }, [baseData, currentTrackId, type])
 
     const setPlayerStatus = ( item ) => {
@@ -74,25 +76,6 @@ const View = ({ type, id }) => {
     const handPlay = () => {
         if ( type === 'track') playItem(baseData);
         else playItem(baseData.track);
-    }
-
-    const playItem = ( data ) => {
-        if (isPlaying && isTheSamePlaing) {
-            dispatch({
-                type: "SWITCH_PLAYER_STATUS", 
-                payload: false //pause track
-            })
-        } else if (!isPlaying && isTheSamePlaing) {
-            dispatch({
-                type: "SWITCH_PLAYER_STATUS", 
-                payload: true // play track
-            })
-        } else {
-            dispatch({
-                type: "SET_PLAYER_TRACK_DATA", 
-                payload: data // set current track
-            })
-        }
     }
 
     return (
@@ -138,8 +121,8 @@ const View = ({ type, id }) => {
                  <div className='track-control'>
                      <PlayButton 
                         isTheSamePlaing={ isTheSamePlaing }
-                        isPlaying={isPlaying}
-                        playFunc={handPlay}
+                        isPlaying={ isPlaying }
+                        playFunc={ handPlay }
                     />
                      <ShareButton />
                  </div>

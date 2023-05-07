@@ -1,14 +1,27 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import AlbumItem from '../../components/albumItem/AlbumItem'
+import useTrackPlay from '../../utils/useTrackPlay';
 
 const TrackList = ({ type }) => {
     const windowWidth = useRef(window.innerWidth);
-
+    const { playSingleItem } = useTrackPlay()
     const {
         baseData,
         track
-    } = useSelector(state => state.singleHeaderSlice)
+    } = useSelector(state => state.singleHeaderSlice);
+
+    const {
+        isPlaying,
+        currentTrackId
+    } = useSelector(state => state.playerSlice)
+
+    const handPlay = (id) => {
+        const currentTrack = track.filter(item => item.id === id)
+        playSingleItem(...currentTrack)
+    }
+    
+
     return (
         <>
             <section className="track-list">
@@ -27,6 +40,10 @@ const TrackList = ({ type }) => {
                                 }
                                 artist={windowWidth.current < 550 ? [item.artist[0]] : item.artist}
                                 audio={item.audio}
+                                isPlaying={ isPlaying }
+                                currentPlayTrack = { item.id === currentTrackId ? true : false }
+
+                                playTrack={handPlay}
                             />
                         ))
                     }

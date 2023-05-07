@@ -9,6 +9,9 @@ const defaultState = {
 
 export const playerSlice = (state = defaultState, action) => {
     switch (action.type) {
+        case "SWITCH_PLAYER_VIEW": 
+            return {...state, player: action.payload};
+            
         case "SWITCH_PLAYER_STATUS":
             return {...state, isPlaying: action.payload};
 

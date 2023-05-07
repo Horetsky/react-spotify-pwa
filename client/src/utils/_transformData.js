@@ -143,6 +143,7 @@ export const transformArtistNewReleses = (data) => {
 }
 
 export const transformAlbums = (data) => {
+    console.log(data);  
         return {
             id: data.id,
             name: data.name,
@@ -161,6 +162,7 @@ export const transformAlbums = (data) => {
             track: data.tracks.items.map(item => ({
                 id: item.id,
                 name: item.name,
+                thumbnail: data.images[1].url,
                 audio: item.preview_url,
                 artist: item.artists.map(artist => ({
                     id: artist.id,
