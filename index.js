@@ -35,8 +35,7 @@ app.post("/login", (req, res) => {
 })
 
 app.post("/refresh", (req, res) => {
-  const refreshToken = req.body.refreshToken;
-
+  const refreshToken = req.body.refresh;
   const redirectUri = req.body.redirectUri;
   const clientId = req.body.clientId;
   const clientSecret = req.body.clientSecret;

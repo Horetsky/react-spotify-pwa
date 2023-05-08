@@ -1,16 +1,13 @@
 import axios from 'axios'
-import Cookies from 'js-cookie'
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useDispatch } from 'react-redux';
 import { setLoadingStatus } from '../redux/_actions';
 
-const token = Cookies.get('access_token')
-
 export default function useHttp() {
-    // const [token, setToken] = useState(null)
     const _apiBase = 'https://api.spotify.com';
     const _rapidApiBase = 'https://youtube-v31.p.rapidapi.com';
     const dispatch = useDispatch();
+    const token = sessionStorage.getItem('access_token');
 
     const reqestSettings = {
         'Content-Type': 'application/json', 

@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useHttp from '../../utils/useHttps'
+import { extractColors } from 'extract-colors';
 
 import { fetchRecommend } from './helpers/thunk';
 import RecommendMusicCard from '../../components/recommendMusicCard/RecommendMusicCard';
@@ -14,7 +15,6 @@ const Recommendation = () => {
     useEffect(() => {
         if (!reload) return
         dispatch(fetchRecommend(getRequest))
-        console.log('recom fetch');
     }, [dispatch, reload])
 
     
@@ -23,18 +23,18 @@ const Recommendation = () => {
         <section className='recommendation edge-blur'>
             <div className='slider-container'>
             {
-               loadingStatus === 'loading' ? <RecommendCardSkeleton /> : <View /> 
+               loadingStatus === 'loading' ? <RecommendCardSkeleton /> : <View reload={reload}/> 
             }
         </div>  
         </section>
     );
 };
 
-const View = () => {
+const View = ({ reload }) => {
     const {
         recommendation
-    } = useSelector(state => state.recommendationSlice)
-
+    } = useSelector(state => state.recommendationSlice);
+    
     return (
         recommendation?.map((item) => {
             return <RecommendMusicCard
@@ -46,6 +46,7 @@ const View = () => {
                         thumbnail={item.thumbnail}
                         type={item.type}
                         atribute={item.atribute}
+                        reload={reload}
                     />
         })
     );

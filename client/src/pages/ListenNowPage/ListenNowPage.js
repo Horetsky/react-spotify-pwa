@@ -6,6 +6,9 @@ import {
     RecommendArtists
 } from "../../modules";
 import CurrentDate from "../../components/currentDate/CurrentDate";
+
+import './style.scss'
+
 const ListenNowPage = () => {
     return (
         <div className='page-container'>

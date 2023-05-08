@@ -6,7 +6,22 @@ import useTrackPlay from '../singleHeader/helpers/useTrackPlay';
 import AlbumItemModal from '../../components/shareModals/AlbumItemModal';
 
 const TrackList = ({ type }) => {
+    const {
+        loadingStatus
+    } = useSelector(state => state.singleHeaderSlice);
+
+    return (
+        <>
+            {
+                loadingStatus !== 'loading' ? <View type={type} /> : null
+            }
+        </>
+    )
+}
+
+const View = ({ type }) => {
     const windowWidth = useRef(window.innerWidth);
+    
     const [isModalOpen, setModalStatus] = useState({
         status: false,
         id: null
@@ -91,7 +106,7 @@ const TrackList = ({ type }) => {
                 </> : null
             }
         </>
-    )
+    );
 }
 
 export default TrackList;

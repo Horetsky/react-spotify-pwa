@@ -14,7 +14,6 @@ const ListenMore = () => {
     useEffect(() => {
         if (!reload) return
         dispatch(fetchListenMore(getRequest))
-        console.log('fetch more');
     }, [dispatch, reload])
 
     return (

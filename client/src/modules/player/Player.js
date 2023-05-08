@@ -8,11 +8,11 @@ const PLayer = () => {
     const { player } = useSelector(state => state.playerSlice)
 
     return (
-        <div className="player">
+        <>
             {
                 player ? <View /> : null
             }
-        </div>
+        </>
     );
 };
 
@@ -24,7 +24,7 @@ const View = () => {
     } = useSelector(state => state.playerSlice)
 
     return (
-        <>
+        <div className="player">
             <SongInfo 
                 name={currentTrack.name}
                 thumbnail={currentTrack.thumbnail}
@@ -45,7 +45,7 @@ const View = () => {
                             onClick={() => dispatch(switchPlayerStatus({player: false}))}
                         >Приховати</span>
                     </h1> */}
-        </>
+        </div>
     );
 }
 

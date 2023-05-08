@@ -11,7 +11,6 @@ const RecommendArtists = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchArtistMore(getRequest));
-        console.log('fav artist getch');
     }, [dispatch, reload])
     const {
         favArtist

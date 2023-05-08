@@ -19,3 +19,25 @@
         }  
     }
 }
+
+@media (max-width: 1000px) {
+    .single-main-content {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 850px)  {
+    .header-cover {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    .artists-wrapper {
+        justify-content: center !important;
+    }
+
+    .track-info {
+        row-gap: 30px !important;
+    }
+
+}

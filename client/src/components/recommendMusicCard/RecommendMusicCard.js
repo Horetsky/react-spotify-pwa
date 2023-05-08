@@ -6,7 +6,7 @@ import { extractColors } from 'extract-colors'
 
 import './recommendMusicCard.scss';
 
-const RecommendMusicCard = ({id, name, artist, date, thumbnail, type, atribute}) => {
+const RecommendMusicCard = ({ id, name, artist, date, thumbnail, type, atribute }) => {
     const [baseColor, setColor] = useState('#fff');
     
     const options = {

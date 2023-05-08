@@ -14,7 +14,6 @@ const Categories = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchCategor(getRequest))
-        console.log('categor fetch');
     }, [dispatch, reload])
 
     const {

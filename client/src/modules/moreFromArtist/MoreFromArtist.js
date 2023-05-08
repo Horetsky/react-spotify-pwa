@@ -14,7 +14,6 @@ const MoreFromArtist = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchmoreFromArtist(getRequest))
-        console.log('more from artist fetch');
     }, [dispatch, reload])
 
 

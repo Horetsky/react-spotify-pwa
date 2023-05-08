@@ -21,7 +21,6 @@ const PersonalPlaylists = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchPersonalPlaylist(getRequest));
-        console.log('person playlist fetch');
     }, [dispatch, reload])
 
     const {
@@ -40,6 +39,7 @@ const PersonalPlaylists = () => {
                 {
                     personalPlaylist.map((item, i) => (
                         <Playlist 
+                            key={item.id}
                             id={item.id}
                             name={item.name}
                             img={i}
