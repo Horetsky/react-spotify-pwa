@@ -161,7 +161,7 @@ const View = ({ type, id }) => {
                             isModalOpen ?
                             <HeaderShareModal
                                 type={type}
-                                artistId={type === 'track' ||type === 'album' ? baseData?.artist[0]?.id : null}
+                                artistId={type === 'track' || type === 'album' ? baseData?.artist[0]?.id : null}
                                 album={type === 'track' ? albums[0]?.id : null}
                                 playlists={type === 'track' ? userData.playlists : null}
                                 addToPlaylist={handAddToPlaylist}

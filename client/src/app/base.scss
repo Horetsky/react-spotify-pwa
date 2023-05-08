@@ -106,14 +106,14 @@ section {
     }
 }
 
-// @media (max-width: 850px) {
-//     section {
-//         margin-top: 50px;
-//     }
+@media (max-width: 850px) {
+    section {
+        margin-top: 50px !important;
+    }
 
-//     .slider-container {
-//         column-gap: 20px;
-//         padding-bottom: 8px;
-//     }
+    .slider-container {
+        column-gap: 20px;
+        padding-bottom: 8px;
+    }
     
-// }
+}

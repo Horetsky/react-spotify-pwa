@@ -8,6 +8,6 @@
     }
     display: grid;
     justify-content: space-around;
-    grid-template-columns: repeat(auto-fill, clamp(200px, 35vw, 274px));
+    grid-template-columns: auto-fill(1fr, minmax(126px, 274px));
     row-gap: 50px;
 }

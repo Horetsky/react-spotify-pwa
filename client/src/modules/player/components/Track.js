@@ -23,6 +23,7 @@ const Track = ({ sound, isPlaying, play, pause }) => {
                 onPlay={() => play()}
                 onPause={() => pause()}
                 autoPlay={false}
+                volume={0.6}
                 layout='horizontal'
 
                 showJumpControls={true}

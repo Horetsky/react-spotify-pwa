@@ -9,8 +9,7 @@ const LibFilters = ({ func }) => {
     }, [activeFilter])
     return (
         <section className='lib-filters-container'>
-
-            <div className='lib-filters'>
+            <div className='lib-filters slider-container'>
                 <a className={!activeFilter ? 'display-none' : null}>
                     <button
                         onClick={() => setActiveFilter(null)}

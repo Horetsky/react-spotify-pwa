@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchPlayerStatus } from './helpers/actions';
 
@@ -18,6 +19,7 @@ const PLayer = () => {
 
 const View = () => {
     const dispatch = useDispatch();
+    const windowWidth = useRef(window.innerWidth);
     const {
         currentTrack,
         isPlaying
