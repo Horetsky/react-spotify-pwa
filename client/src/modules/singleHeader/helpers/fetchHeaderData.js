@@ -28,20 +28,23 @@ export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => 
                 date: trackData.date,
                 name: trackData.name,
                 thumbnail: trackData.thumbnail,
-                audio: trackData.audio
-            }
+                audio: trackData.audio,
+                spotify: trackData.spotify
+            },
+            isInLibrary: isInLibrary[0]
         }))
         dispatch(setLoadingStatus('idle'))
     }
     async function getArtistData() {
-        const isInLibrary = await request(`/v1/me/following/contains?type=artist&ids=${id}`);
+        const isFollowed = await request(`/v1/me/following/contains?type=artist&ids=${id}`)
 
         const artistData = await request(`/v1/artists/${id}`)
                         .then(transformSingleArtist);
         dispatch(setData({
             baseData: {
-                ...artistData
-            }
+                ...artistData,
+            },
+            isInLibrary: isFollowed[0]
         }))
         dispatch(setLoadingStatus('idle'))
     }
@@ -49,9 +52,9 @@ export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => 
         const isInLibrary = await request(`/v1/me/playlists`)
                     .then(data => data.items.filter(item => (item.id === id)))
 
-        // if (isInLibrary.length > 0) {
-        //     dispatch(saveTrackStatus(true))
-        // } else {dispatch(saveTrackStatus(false))}
+        if (isInLibrary.length > 0) {
+            dispatch(saveTrackStatus(true))
+        } else {dispatch(saveTrackStatus(false))}
 
         const data = await request(`/v1/playlists/${id}?market=UA`)
                         .then(transformPlaylist);
@@ -74,8 +77,8 @@ export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => 
         dispatch(setLoadingStatus('idle'))
     }
     async function getAlbumData() {
-        // const isInLibrary = await request(`/v1/me/albums/contains?ids=${id}`)
-        //                 .then(data => dispatch(saveTrackStatus(data[0])))
+        const isInLibrary = await request(`/v1/me/albums/contains?ids=${id}`)
+                        .then(data => dispatch(saveTrackStatus(data[0])))
 
         const data = await request(`/v1/albums/${id}`)
                         .then(transformAlbums);
@@ -177,3 +180,4 @@ export const fetchSingleHeader = (request, type, id, userData) => (dispatch) => 
 const setData = (data) => ({type: "SET_SINGLE_HEADER_DATA", payload: data});
 const setLoadingStatus = (status) => ({type: "SET_SINGLE_HEADER_LOADING", payload: status});
 export const setSolidColor = color => ({type: 'SET_SOLID_COLOR', payload: color});
+const saveTrackStatus = status => ({type: 'SWITCH_SAVE_TRACK_STATUS', payload: status});

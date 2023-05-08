@@ -1,10 +1,17 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AlbumItem from '../../components/albumItem/AlbumItem'
-import useTrackPlay from '../../utils/useTrackPlay';
+import useTrackPlay from '../singleHeader/helpers/useTrackPlay';
+
+import AlbumItemModal from '../../components/shareModals/AlbumItemModal';
 
 const TrackList = ({ type }) => {
     const windowWidth = useRef(window.innerWidth);
+    const [isModalOpen, setModalStatus] = useState({
+        status: false,
+        id: null
+    })
+
     const { playSingleItem } = useTrackPlay()
     const {
         baseData,
@@ -21,6 +28,12 @@ const TrackList = ({ type }) => {
         playSingleItem(...currentTrack)
     }
     
+    const setModalViewStatus = (id) => {
+        setModalStatus({
+            status: !isModalOpen.status,
+            id: id
+        })
+    }
 
     return (
         <>
@@ -44,7 +57,18 @@ const TrackList = ({ type }) => {
                                 currentPlayTrack = { item.id === currentTrackId ? true : false }
 
                                 playTrack={handPlay}
-                            />
+                                openFunc={setModalViewStatus}
+                            >
+                                {
+                                    isModalOpen.status && isModalOpen.id === item.id ?
+                                    <AlbumItemModal 
+                                        artistId={item.artist[0]?.id}
+                                        trackId={item.id}
+                                        spotify={item.spotify}
+                                        openFunc={setModalViewStatus}
+                                    /> : null
+                                }
+                            </AlbumItem>
                         ))
                     }
                 </ul>

@@ -5,14 +5,10 @@ import { ROUTES } from '../../router/routes';
 
 import './albumItem.scss'
 
-const AlbumItem = ({ num, id, name, thumbnail, artist, playTrack, isPlaying, currentPlayTrack }) => {
+const AlbumItem = ({ num, id, name, thumbnail, artist, playTrack, isPlaying, currentPlayTrack , openFunc, children}) => {
     const windowWidth = useRef(window.innerWidth);
-    // const {isTheSamePlaing, isPlaying, currentTrackId} = useSelector(state => state.player)
-    // const { isModalOpen } = useSelector(state => state.general)
-
 
     return (
-        <Link to={null}>
             <div className='search-item-wrapper album-item-wrapper'>
                 <div className='item-data'
                     onClick={() => playTrack(id)}
@@ -62,22 +58,17 @@ const AlbumItem = ({ num, id, name, thumbnail, artist, playTrack, isPlaying, cur
                     </div>
                 </div>
                 <button className="menu-btn"
-                    // onClick={() => dispatch(openModal(isModalOpen ? null : `track_${id}`))}
+                    onClick={() => openFunc(id)}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
                         <path d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"></path>
                     </svg>
 
                 </button>
-                    {/* {
-                        isModalOpen === `track_${id}` ? 
-                            <AlbumTrackModal 
-                                action={{id: id, artistId: artist[0]?.id}} 
-                                type="track" 
-                            /> : null
-                    } */}
+                    {
+                        children
+                    }
             </div>
-        </Link>
     )
 }
 

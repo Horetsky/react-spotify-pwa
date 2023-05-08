@@ -1,17 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../router/routes";
 import { useDispatch, useSelector } from "react-redux";
 
 import useHttp from "../../utils/useHttps";
 import useColors from "./helpers/useColors";
-import useTrackPlay from "../../utils/useTrackPlay";
+import useTrackPlay from "./helpers/useTrackPlay";
 
-import { fetchSingleHeader } from "./helpers/thunk";
-
+import { fetchSingleHeader } from "./helpers/fetchHeaderData";
+import { addToPlaylistFunc } from "./helpers/addToPlaylistFunc";
+import { saveToLibrary } from "./helpers/saveToLibrary";
 import HeaderSkeleton from "../../components/headerSkaleton/HeaderSkeleton";
 import PlayButton from '../../components/headerControlBtn/PlayButton';
 import ShareButton from '../../components/headerControlBtn/ShareButton';
+import InfoButton from "../../components/headerControlBtn/InfoButton";
+
+import HeaderShareModal from "../../components/shareModals/HeaderShareModal";
 
 import './style.scss'
 const SingleHeader = ({ type, id, loadingStatus }) => {
@@ -37,12 +41,23 @@ const SingleHeader = ({ type, id, loadingStatus }) => {
 };
 
 const View = ({ type, id }) => {
+    const [isModalOpen, setModalStatus] = useState(false)
+    const { secondaryRequest } = useHttp();
+
     const { getColor } = useColors()
     const dispatch = useDispatch();
     const { playItem } = useTrackPlay()
+
     const { 
-        baseData 
+        baseData,
+        isInLibrary 
     } = useSelector(state => state.singleHeaderSlice);
+    const {
+        albums
+    } = useSelector(state => state.singleTrackSlice);
+    const {
+        userData
+    } = useSelector(state => state.user);
 
     const { 
         currentTrackId, 
@@ -76,6 +91,18 @@ const View = ({ type, id }) => {
     const handPlay = () => {
         if ( type === 'track') playItem(baseData);
         else playItem(baseData.track);
+    }
+
+    const setModalViewStatus = () => {
+        setModalStatus(!isModalOpen)
+    }
+
+    const handAddToPlaylist = (id) => {
+        dispatch(addToPlaylistFunc(secondaryRequest, baseData?.id, id))
+    }
+
+    const handSaveToLib = () => {
+        dispatch(saveToLibrary(secondaryRequest, baseData?.id, isInLibrary, type))
     }
 
     return (
@@ -119,12 +146,31 @@ const View = ({ type, id }) => {
                     }
                  </div>
                  <div className='track-control'>
-                     <PlayButton 
-                        isTheSamePlaing={ isTheSamePlaing }
-                        isPlaying={ isPlaying }
-                        playFunc={ handPlay }
-                    />
-                     <ShareButton />
+                    {
+                        type === 'artist' || type === 'library' ?
+                        <InfoButton url={baseData.spotify}/> 
+                        :
+                        <PlayButton 
+                            isTheSamePlaing={ isTheSamePlaing }
+                            isPlaying={ isPlaying }
+                            playFunc={ handPlay }
+                        />
+                    }
+                    <ShareButton openFunc={setModalViewStatus}>
+                        {
+                            isModalOpen ?
+                            <HeaderShareModal
+                                type={type}
+                                artistId={type === 'track' ||type === 'album' ? baseData?.artist[0]?.id : null}
+                                album={type === 'track' ? albums[0]?.id : null}
+                                playlists={type === 'track' ? userData.playlists : null}
+                                addToPlaylist={handAddToPlaylist}
+                                isInLibrary={isInLibrary}
+                                saveToLib={handSaveToLib}
+                                spotify={baseData.spotify}
+                            /> : null
+                        }
+                    </ShareButton>
                  </div>
              </div>
         </>

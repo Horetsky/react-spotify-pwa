@@ -143,7 +143,6 @@ export const transformArtistNewReleses = (data) => {
 }
 
 export const transformAlbums = (data) => {
-    console.log(data);  
         return {
             id: data.id,
             name: data.name,
@@ -164,6 +163,7 @@ export const transformAlbums = (data) => {
                 name: item.name,
                 thumbnail: data.images[1].url,
                 audio: item.preview_url,
+                spotify: item.external_urls.spotify,
                 artist: item.artists.map(artist => ({
                     id: artist.id,
                     name: artist.name
@@ -173,6 +173,7 @@ export const transformAlbums = (data) => {
 }
 
 export const transformPlaylist = (data) => {
+    console.log(data);
     return {
         id: data.id,
         name: data.name,
@@ -190,6 +191,7 @@ export const transformPlaylist = (data) => {
             name: item.track?.name,
             thumbnail: item.track?.album.images[1].url,
             audio: item.track?.preview_url,
+            spotify: item.track?.external_urls.spotify,
             artist: item.track?.artists.map(artist => ({
                     id: artist.id,
                     name: artist.name

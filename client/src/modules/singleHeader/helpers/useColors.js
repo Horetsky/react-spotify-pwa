@@ -1,6 +1,6 @@
 import { extractColors } from 'extract-colors';
 import { useDispatch } from 'react-redux';
-import { setSolidColor } from './thunk';
+import { setSolidColor } from './fetchHeaderData';
 
 export default function useColors() {
     const dispatch = useDispatch()

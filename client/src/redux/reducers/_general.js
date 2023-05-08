@@ -7,8 +7,6 @@ const defaultState = {
     
     activePage: 'listen',
     loadingStatus: 'idle',
-
-    solidColor: '#fff'
 }
 
 export const general = (state = defaultState, action) => {
@@ -24,11 +22,6 @@ export const general = (state = defaultState, action) => {
 
         case "SET_SOLID_COLOR":
             return {...state, solidColor: action.payload}
-        // case "SWITCH_LOGIN_STATUS":
-        //     return {...state, loginStatus: action.payload};
-
-        case "OPEN_MODAL":
-            return {...state, isModalOpen: action.payload};
 
         case "SWITCH_SAVE_TRACK_STATUS":
             return {...state, isInLibrary: action.payload};

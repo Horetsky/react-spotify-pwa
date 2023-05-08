@@ -17,6 +17,7 @@ export const fetchUserData = (request) => async(dispatch) => {
                         .then(data => data.items.map(tarnsformPlaylist));
         dispatch(setReload(false))
         dispatch(setData({
+            playlists,
             playlistCount: playlists.length,
             ...baseUserData
         }))
