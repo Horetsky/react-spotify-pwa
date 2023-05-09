@@ -22,7 +22,6 @@ export default function useAuth (code, accesCookie, refreshCookie, expiresCookie
       }
     }, [accesCookie, expiresCookie]);
 
-
     useEffect(() => {
       if (code) {
             axios
@@ -32,7 +31,8 @@ export default function useAuth (code, accesCookie, refreshCookie, expiresCookie
               .then(res => {
                 setAccessToken(res.data.accessToken)
                 setRefreshToken(res.data.refreshToken)
-                setExpiresIn(res.data.expiresIn * 10000)
+                setExpiresIn(res.data.expiresIn * 1000)
+                rememberAccessData(res.data.accessToken, res.data.refreshToken)
                 window.history.pushState({}, null, "/")
               })
               .catch((e) => {
@@ -61,22 +61,26 @@ export default function useAuth (code, accesCookie, refreshCookie, expiresCookie
             .then(res => {
               setAccessToken(res.data.accessToken)
               setExpiresIn(res.data.expiresIn)
-              setRefreshToken(refresh)
+              setRefreshToken(refresh);
+              rememberAccessData(res.data.accessToken, refresh)
             })
             .catch(() => {
               window.location = "/"
             })
       }
 
-      useEffect(() => {
-        if (!accessToken || !refreshToken) return;
-        console.log('set access data');
-        Cookies.set('access_token', accessToken, { expires: 1 })
-        Cookies.set('refresh_token', refreshToken, { expires: 1 })
+      const rememberAccessData = (access, refresh) => {
+        if (!access || !refresh) return;
+        console.log('remember access data');
+        Cookies.set('access_token', access, { expires: 1 })
+        Cookies.set('refresh_token', refresh, { expires: 1 })
         Cookies.set('expires', currentTime, { expires: 1 })
+      }
+
+      useEffect(() => {
+        if (!accessToken) return
+        console.log('set access for session');
         sessionStorage.setItem('access_token', accessToken);
-
-      }, [accessToken, refreshToken])
-
+      }, [accessToken])
     return accessToken
 }

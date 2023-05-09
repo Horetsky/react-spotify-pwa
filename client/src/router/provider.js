@@ -39,7 +39,9 @@ export const AppRouterProvider = createBrowserRouter([
 
     {
         path: ROUTES.singleTrack(),
-        element: <SingleItem />,
+        element: <PrivateRoute>
+                    <SingleItem />
+                </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -49,7 +51,9 @@ export const AppRouterProvider = createBrowserRouter([
     },
     {
         path: ROUTES.singleArtist(),
-        element: <SingleItem />,
+        element: <PrivateRoute>
+                    <SingleItem />
+                </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -59,7 +63,9 @@ export const AppRouterProvider = createBrowserRouter([
     },
     {
         path: ROUTES.singlePlaylist(),
-        element: <SingleItem />,
+        element: <PrivateRoute>
+                    <SingleItem />
+                </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -69,7 +75,9 @@ export const AppRouterProvider = createBrowserRouter([
     },
     {
         path: ROUTES.singleAlbum(),
-        element: <SingleItem />,
+        element: <PrivateRoute>
+                    <SingleItem />
+                </PrivateRoute>,
         children: [
             {
                 index: true,
@@ -79,7 +87,9 @@ export const AppRouterProvider = createBrowserRouter([
     },
     {
         path: ROUTES.autoPlaylist(),
-        element: <SingleItem />,
+        element: <PrivateRoute>
+                    <SingleItem />
+                </PrivateRoute>,
         children: [
             {
                 index: true,

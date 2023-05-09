@@ -15,7 +15,6 @@ const LibArtist = ({ filter }) => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchLibArtist(getRequest))
-        console.log('playlists fetch');
     }, [dispatch, reload])
 
     const {

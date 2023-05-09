@@ -173,7 +173,6 @@ export const transformAlbums = (data) => {
 }
 
 export const transformPlaylist = (data) => {
-    console.log(data);
     return {
         id: data.id,
         name: data.name,

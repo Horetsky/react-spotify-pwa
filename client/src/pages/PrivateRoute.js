@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import useAuth from "./helpers/useAuth";
+import useAuth from "../utils/useAuth";
 import { LoginPage } from "./_index";
 
 import Cookies from 'js-cookie'

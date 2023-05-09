@@ -15,7 +15,6 @@ const LibTracks = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchLibTracks(getRequest))
-        console.log('playlists fetch');
     }, [dispatch, reload])
 
     const {

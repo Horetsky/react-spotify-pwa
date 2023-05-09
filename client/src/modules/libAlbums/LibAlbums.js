@@ -15,7 +15,6 @@ const LibAlbums = () => {
     useEffect(() => {
         if (!reload) return;
         dispatch(fetchLibAlbums(getRequest))
-        console.log('playlists fetch');
     }, [dispatch, reload])
 
     const {
