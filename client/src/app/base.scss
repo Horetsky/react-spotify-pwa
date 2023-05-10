@@ -10,11 +10,14 @@ body {
     color: $base-font-color;
 
     //################
-    padding-bottom: 200px;
+    // 
     
 }
 a {
     color: #000;
+}
+.page-container {
+    padding-bottom: 200px;
 }
 
 .display-none {

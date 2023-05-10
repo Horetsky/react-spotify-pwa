@@ -1,3 +1,4 @@
+import './style.scss'
 
 const clientId = process.env.REACT_APP_CLIET_ID;
 const authUrl = process.env.REACT_APP_AUTH_URL;
@@ -34,11 +35,15 @@ const LoginForm = () => {
         }
     }
     return (
-        <button
-            onClick={() => login()}
-        >
-            Login
-        </button>
+        <div className="login-form">
+            <h1>Welcom to Music Portal</h1>
+            <button
+                onClick={() => login()}
+                className="login-button"
+            >
+                Login with Spotify
+            </button>
+        </div>
     );
 };
 

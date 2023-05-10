@@ -1,8 +1,8 @@
 import { LoginForm } from "../../modules/index";
-
+import './style.scss'
 const LoginPage = () => {
     return (
-        <div>
+        <div className="login-page-container">
             <LoginForm />
         </div>
     );
