@@ -11,13 +11,6 @@ const LoginForm = () => {
     }
     const  getSpotifyLoginRequest = () => {
         const scope = [
-            "user-read-private",
-            "user-read-email",
-            "user-modify-playback-state",
-            "user-read-playback-state",
-            "user-read-currently-playing",
-            "user-read-recently-played",
-            "user-read-recently-played",
             "user-library-read",
             "user-library-modify",
             "user-follow-read",
