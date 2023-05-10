@@ -41,7 +41,8 @@ registerRoute(
       url.pathname === '/v1/me/following' ||
       url.pathname === '/v1/me/top/tracks' ||
       url.pathname === '/v1/me/top/artists' ||
-      url.pathname === '/v1/browse/featured-playlists' || 
+      url.pathname === '/v1/browse/featured-playlists' ||
+      url.pathname === '/v1/browse/categories' ||
       url.pathname === '/v1/me/tracks' ||
       url.pathname === '/v1/me/playlists' ||
       url.pathname === '/v1/me/albums' 

@@ -1,0 +1,53 @@
+@import '../../app/vars.scss';
+
+.message-container {
+    position: fixed;
+    top: 15vh;
+    right: 2vw;
+    animation: 2s show ease;
+    .message-modal {
+        display: flex;
+        align-items: center;
+        column-gap: 12px;
+
+        .close-modal {
+            background: $border-solid-color;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            svg {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+    
+    .oflline-access {
+        background: $border-solid-color;
+        border-radius: 10px;
+        padding: 6px 8px;
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+        .message-modal-text {
+            h3 {
+                font-weight: 500;
+            }
+            p {
+                font-weight: 300;
+            }
+        }
+    }
+}
+
+@keyframes show {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

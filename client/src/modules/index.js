@@ -42,6 +42,8 @@ import TrackList from "./trackList/TrackList";
 import Player from "./player/Player";
 import { playerSlice } from "./player/helpers/reducer";
 
+import UxMessage from "./uxMessage/UxMessage";
+
 export {
     LoginForm,
 
@@ -86,5 +88,7 @@ export {
     TrackList,
     
     Player,
-    playerSlice
+    playerSlice,
+
+    UxMessage
 }
