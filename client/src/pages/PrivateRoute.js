@@ -7,7 +7,8 @@ import Cookies from 'js-cookie'
 const code = new URLSearchParams(window.location.search).get("code");
 
 const PrivateRoute = ({ children }) => {
-    const [accessToken, setAccessToken] = useState()
+    const [accessToken, setAccessToken] = useState();
+
     const   accesCookie = Cookies.get('access_token'),
             refreshCookie = Cookies.get('refresh_token'),
             expiresCookie = Cookies.get('expires');
@@ -19,7 +20,7 @@ const PrivateRoute = ({ children }) => {
         setAccessToken(token);
     }, [token])
 
-    if (!accessToken) return <LoginPage />
+    if (!accessToken && navigator.onLine) return <LoginPage />
     
     return  children 
 };
