@@ -27,7 +27,9 @@
 }
 
 @media (max-width: 440px) {
-    button svg {
-        display: none;
+    .track-control {
+        button svg {
+            display: none;
+        }
     }
 }
