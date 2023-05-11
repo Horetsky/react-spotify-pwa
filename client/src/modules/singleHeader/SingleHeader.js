@@ -40,7 +40,7 @@ const SingleHeader = ({ type, id, loadingStatus }) => {
     );
 };
 
-const View = ({ type, id }) => {
+const View = ({ type }) => {
     const [isModalOpen, setModalStatus] = useState(false)
     const { secondaryRequest } = useHttp();
 
@@ -167,7 +167,7 @@ const View = ({ type, id }) => {
                                 addToPlaylist={handAddToPlaylist}
                                 isInLibrary={isInLibrary}
                                 saveToLib={handSaveToLib}
-                                spotify={baseData.spotify}
+                                spotify={baseData.spotify ? baseData.spotify : null}
                             /> : null
                         }
                     </ShareButton>

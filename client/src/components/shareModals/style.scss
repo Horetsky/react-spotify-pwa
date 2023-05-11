@@ -119,13 +119,14 @@ hr {
     }
  }
 
-@media(max-width: 600px) {
+@media(max-width: 1000px) {
     .share-modal-wrapper {
         border-radius: 8px 0 8px 8px;
         left: -50%; 
     }
     .playlists-wrapper {
-        left: 0;
+        left: calc(-100% + 5px);
+        border-radius: 8px 0 0 8px;
         bottom: 0;
         width: 100%;
     }

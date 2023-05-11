@@ -55,19 +55,6 @@
 }
  
  @media (max-width: 850px) {
-     .single-artist-header, .single-track-header {
-        flex-direction: column;
-     }
-     .track-info {
-        align-items: center;
-        .track-caption  {
-           text-align: center;
-           h1, h3, p {
-               color: #000 !important;
-           }
-        }
-     }
-
      .artist-albums {
         flex-direction: column;
         row-gap: 40px;

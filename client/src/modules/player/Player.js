@@ -19,7 +19,6 @@ const PLayer = () => {
 
 const View = () => {
     const dispatch = useDispatch();
-    const windowWidth = useRef(window.innerWidth);
     const {
         currentTrack,
         isPlaying
@@ -30,7 +29,7 @@ const View = () => {
             <SongInfo 
                 name={currentTrack.name}
                 thumbnail={currentTrack.thumbnail}
-                artist={currentTrack.artist}
+                artist={[currentTrack.artist[0]]}
             />
 
             <Track 
@@ -39,14 +38,6 @@ const View = () => {
                 play={() => dispatch(switchPlayerStatus(true))}
                 pause={() => dispatch(switchPlayerStatus(false))}
             />
-                
-                    {/* <h1 className='player-error'>
-                        Нажаль даний трек недоступний для відтворення
-                        <br/>
-                        <span
-                            onClick={() => dispatch(switchPlayerStatus({player: false}))}
-                        >Приховати</span>
-                    </h1> */}
         </div>
     );
 }
