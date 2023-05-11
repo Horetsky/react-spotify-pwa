@@ -37,3 +37,10 @@
         }
     }
 }
+
+.playlist-items {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 35vw, 274px), 1fr));
+    grid-gap: 20px;
+}

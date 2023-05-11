@@ -16,7 +16,7 @@ body {
 a {
     color: #000;
 }
-.page-container {
+.page-container, .single-item-content {
     padding-bottom: 200px;
 }
 
@@ -95,18 +95,6 @@ section {
     font-weight: 900;
     font-size: clamp(20px, 2.6vw, 26px);
     padding-bottom: 20px;
-
-    &:hover {
-        h1 {
-            color: $accent-color;
-            transition: all 0.2s;  
-        }
-        svg path{
-            transition: all 0.2s; 
-            fill: $accent-color;
-            stroke: $accent-color;
-        }
-    }
 }
 
 @media (max-width: 850px) {
@@ -117,6 +105,23 @@ section {
     .slider-container {
         column-gap: 20px;
         padding-bottom: 8px;
+    }
+    
+}
+
+@media (min-width: 1200px) {
+    .section-name {
+        &:hover {
+            h1 {
+                color: $accent-color;
+                transition: all 0.2s;  
+            }
+            svg path{
+                transition: all 0.2s; 
+                fill: $accent-color;
+                stroke: $accent-color;
+            }
+        }
     }
     
 }

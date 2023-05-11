@@ -38,7 +38,7 @@ const LibPlaylists = () => {
                             id={item.id}
                             name={item.name}
                             thumbnail={item.thumbnail}
-                            artist={userData.name ? [{name: `${userData.name}`, id: null}] : item.artist}
+                            artist={item.owner ? item.owner : [{name: `${userData.name}`, id: null}]}
                             type="playlist"
                         />
                     ))

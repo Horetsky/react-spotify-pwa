@@ -25,3 +25,9 @@
         }
     }
 }
+
+@media (max-width: 440px) {
+    button svg {
+        display: none;
+    }
+}

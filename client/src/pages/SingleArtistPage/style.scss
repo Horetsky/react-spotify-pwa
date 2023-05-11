@@ -48,7 +48,7 @@
 
         .artist-page-video-clip {
             border-radius: 10px;
-            width: 70%;
+            width: 80%;
             height: clamp(200px, 45vw, 600px);
         }
     }
@@ -71,5 +71,13 @@
      .artist-albums {
         flex-direction: column;
         row-gap: 40px;
+     }
+     .artist-video-container {
+        padding: 50px 0 50px 0 !important;
+        row-gap: 20px !important;
+
+        .artist-page-video-clip {
+            width: 90% !important;
+        }
      }
  }

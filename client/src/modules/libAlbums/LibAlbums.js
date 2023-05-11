@@ -38,7 +38,7 @@ const LibAlbums = () => {
                             id={item.id}
                             name={item.name}
                             thumbnail={item.thumbnail}
-                            artist={userData.name ? [{name: `${userData.name}`, id: null}] : item.artist}
+                            artist={item.artist ? item.artist : [{name: `${userData.name}`, id: null}]}
                             type="album"
                         />
                     ))

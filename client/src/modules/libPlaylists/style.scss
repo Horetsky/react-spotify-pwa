@@ -1,13 +1,1 @@
-.playlist-items {
-    a {
-        width: fit-content;
-    }
-    .artist-cover {
-        width: clamp(150px, 35vw, 274px) !important;
-        height: clamp(150px, 35vw, 274px) !important;
-    }
-    display: grid;
-    justify-content: space-around;
-    grid-template-columns: auto-fill(1fr, minmax(126px, 274px));
-    row-gap: 50px;
-}
+

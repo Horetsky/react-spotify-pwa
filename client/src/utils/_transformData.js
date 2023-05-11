@@ -57,7 +57,8 @@ export const tarnsformPlaylist = (data) => {
     return {
         id: data.id,
         name: data.name,
-        thumbnail: data.images ? data.images[0].url : null
+        thumbnail: data.images ? data.images[0].url : null,
+        owner: data.owner ? [{name: data.owner.display_name, id: null}] : null
     }
 }
 

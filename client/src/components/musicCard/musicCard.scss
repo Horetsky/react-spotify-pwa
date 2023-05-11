@@ -10,8 +10,8 @@
         flex-direction: column;
 
         .small-cover {
-            width: clamp(126px, 35vw, 274px);
-            height: clamp(126px, 35vw, 274px);
+            width: clamp(150px, 35vw, 274px);
+            height: clamp(150px, 35vw, 274px);
             border-radius: 6px;
             overflow: hidden;
     
@@ -42,11 +42,15 @@
             .music-card-artists {
                 display: flex;
                 column-gap: 8px;
+                
                 .small-artist {
-                    // font-size: 15px;
                     font-size: clamp(10px, 1.5vw, 15px);
-                    font-weight: 400;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
                     color: $thirdly-font-color;
+                    font-weight: 400;
                 }
             } 
         }
