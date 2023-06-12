@@ -82,9 +82,9 @@ To deploy this project run
 ```bash
   npm run build
 ```
-Тow you have a builded application to upload to your hosting.
+Now you have a builded application to upload to your hosting.
 
-**For example, [Deploy to Herocu](''https://devcenter.heroku.com/articles/git)**
+**For example, [Deploy to Herocu](https://devcenter.heroku.com/articles/git)**
 
 
 
@@ -93,7 +93,7 @@ To deploy this project run
 
 ## Demo
 
-**See the demo: [Music Portal]('https://music-portal.herokuapp.com/')**
+**See the demo: [Music Portal](https://music-portal.herokuapp.com/)**
 
 
 ## Tech Stack
