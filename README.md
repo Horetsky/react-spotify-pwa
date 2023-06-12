@@ -9,20 +9,54 @@ This is a progressive React application based on the Spotify web API. This app w
 
 
 ## Features
+- Revising the recommendation
+- Search for music by name
+- Discover music by category
+- Play music
+- View song info
+- Watch music videos
+- Discover new artists
+- Watch artist's popular  music videos
+- Save songs to your library
+- Create playlists
+- Follow your favorite artists
+- Offline mode
+- Intelligent resource caching
 
-    1. Revising the recommendation
-    2. Search for music by name
-    3. Discover music by category
-    4. Play music
-    5. View song info
-    6. Watch music videos
-    7. Discover new artists
-    8. Watch artist's popular  music videos
-    9. Save songs to your library
-    10. Create playlists
-    11. Follow your favorite artists
+
+#### Home Page
+On the home page, you can view recommended albums, playlists, and tracks. You can also see your favorite and recently listened tracks, your favorite artists and their popular tracks.
+
+#### Search Page
+On the search page, you can find tracks by keywords or categories. The application interface will immediately respond to keywords entered in the search field and offer the most likely results.
+
+#### Library Page
+On the library page, you can view your profile, saved tracks, albums, and playlists, as well as the artists you follow.
+
+#### Track Page
+On the track page, you can view information about the track, listen to it, watch a music video, and discover similar tracks.
+
+#### Artist Page
+On the artist's page, you can view information about the artist, discover popular tracks, albums and video clips featuring this artist.
+
+#### Album / Playlist Page
+On the album / playlist page, you can view information about this album / playlist, its tracks, and listen to each of them. If you like the it, you can easily add it to your library using the user-friendly interface.
 
 
+
+## Files structure
+
+#### Server side
+The server side consists of a single main file **``index.js``** that acts as a server. ``index.js`` also provides authentification features.
+
+#### Client side
+The client side consists of:
+- components ``./client/src/components``
+- basic modules ``./client/src/modules``, which contain all the necessary resources for proper functioning, 
+- pages ``./client/src/pages`` that consist of modules and do not contain business logic.
+- a router ``./client/src/router`` that provides routing to the pages
+- redux ``./client/src/redux`` that contains the global state and provides data exchange between modules
+- utilities ``./client/src/utils`` that provide authentication functions ``/utils/useAuth.js``, server requests ``/utils/useHttps.js`` and data preparation ``/utils/_transformData.js``for display on the page
 
 
 ## API Access
@@ -95,6 +129,7 @@ Now you have a builded application to upload to your hosting.
 
 **See the demo: [Music Portal](https://music-portal.herokuapp.com/)**
 
+**See the video demo on [YouTube](https://youtu.be/vthPO4e-8pQ)**
 
 ## Tech Stack
 
